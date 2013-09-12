@@ -1,24 +1,6 @@
 #!/bin/bash
 
-#########################################################################
-## CONFIGURATION AREA: This stuff is the only stuff you may need to     #
-##                     change.                                          #
-#########################################################################
-
-# Linux and Mac users, this directory should be changed to be of this form:
-# BATIK_DIR="/Users/webtest/src/batik".  Windows should use the form below.
-BATIK_DIR='c:\Program Files\Batik\batik-1.7'
-
-# The path should contain the directories where EOTFAST-1.EXE, ttf2eot,
-# fontforge, and all the scripts in the @Font-Face Contruction Set reside.
-# Uncomment the line below with the right directories.  Remember the 
-# $PATH at the beginning of the string, or the script will forget what
-# was originally in the PATH.
-PATH="$PATH:/home/haw5855/src/fontforge-mingw_2010_05_18"
-
-#########################################################################
-## PROGRAM AREA                                                         #
-#########################################################################
+[ -z "$BATIK_DIR" ] && BATIK_DIR='/usr/share/java'
 
 FILE_STUBS=''
 SCRIPT_DIR=`echo $0 | sed "s/convertFonts.sh//"`
@@ -35,7 +17,6 @@ toTTF () {
 		echo "(Using Cygwin FontForge)"
 		$FONTFORGE -script $SCRIPT_DIR/2ttf.pe $i 
 	fi
-	
 }
 
 toEOT () {

@@ -1,0 +1,26 @@
+sudo apt-get install fontforge libbatik-java
+
+# ttf2eot
+cd ~/.local/src/
+svn checkout http://ttf2eot.googlecode.com/svn/trunk/ ttf2eot
+cd ttf2eot
+# apply patch from here: https://code.google.com/p/ttf2eot/issues/detail?can=2&start=0&num=100&q=&colspec=ID%20Type%20Status%20Priority%20Milestone%20Owner%20Summary&groupby=&sort=&id=26
+make
+sudo cp ttf2eot /usr/local/bin
+
+# sfnt2woff
+cd ~/.local/src
+wget http://people.mozilla.org/~jkew/woff/woff-code-latest.zip
+unzip woff-code-latest.zip -d sfnt2woff
+cd sfnt2woff
+make
+sudo cp sudo cp sfnt2woff /usr/local/bin
+
+# fontface converter
+git clone git@github.com:bendavis78/css3FontConverter.git
+sudo cp -a css3FontConverter /usr/local/lib/css3-font-converter
+sudo ln -s /usr/local/lib/css3-font-converter /usr/local/bin/fontface
+echo "BATIK_DIR=/usr/share/java" >> $HOME/.bashrc
+
+# usage
+fontface *.otf
